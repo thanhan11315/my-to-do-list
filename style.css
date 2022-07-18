@@ -11,7 +11,10 @@
     padding: 30px 30px 20px;
     text-align: center;
 }
-
+.container .box-title div:nth-child(2){
+    width: 100%;
+    display: flex;
+}
 .container .box-title .title {
     font-size: 20px;
     font-weight: bold;
@@ -19,8 +22,10 @@
 }
 
 .container .box-title .input {
-    width: 75%;
-}
+    width: 80%;
+    margin: 0px;
+    padding: 5px 0px;
+    border: 2px solid #ffffff;}
 
 .container .box-title .input:focus-visible {
     outline: none;
@@ -31,6 +36,8 @@
 .container .box-title button {
     width: 20%;
     cursor: pointer;
+    border: 0px;
+    padding: 0px;
 }
 
 .container .box-title button.hidden{
