@@ -85,3 +85,8 @@
 .container ul.my-list li .delete-button:hover {
     color: red;
 }
+
+.red{
+    color: red;
+    text-decoration: underline;
+}

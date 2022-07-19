@@ -3,7 +3,6 @@ var buttonEditElement = document.querySelector('.edit')
 var inputElement = document.querySelector('.input')
 var ulElement = document.querySelector('.my-list')
 var deleteButtonElement = document.querySelector('.delete-button')
-var spanElement = document.querySelector('.span')
 
 function refreshPage() {
     var getlocalStorage = localStorage.getItem('keyListArray')
@@ -76,6 +75,7 @@ function deleteElement(key) {
 }
 
 function editListInput(key) {
+
     var getlocalStorage = localStorage.getItem('keyListArray')
 
     var listArray = JSON.parse(getlocalStorage)
@@ -86,19 +86,28 @@ function editListInput(key) {
 
     buttonEditElement.classList.remove('hidden')
 
-    // var spanEdit = document.classList
+    var spanElement = document.querySelector(`li:nth-child(${key + 1}) .span`)
 
-    buttonEditElement.addEventListener('click', addListEdit)
+    var lengthArray = listArray.length
 
-    function addListEdit() {
-        if (!inputElement.value){
+    for(var i=0 ; i < lengthArray; i++ ) {
+        var spanElementAll = document.querySelector(`li:nth-child(${i + 1}) .span`)
+        spanElementAll.classList.remove('red')
+    }
+
+    spanElement.classList.add('red')
+
+    buttonEditElement.onclick = function addListEdit() {
+        if (!inputElement.value) {
             alert('vui long nhap du lieu chinh sua')
-            console.log(inputElement.value,"dsadsađá")
-            console.log(!inputElement.value)
         } else {
+
+            var getlocalStorage = localStorage.getItem('keyListArray')
+
+            var listArray = JSON.parse(getlocalStorage)
+            
             listArray.splice(key, 1, inputElement.value)
             localStorage.setItem('keyListArray', JSON.stringify(listArray))
-
             var ulArray = listArray.map(function (value, key) {
                 return `<li><span class="span" onclick= "editListInput(${key})" >${value}</span><button class="delete-button" onclick = "deleteElement(${key})">x</button></li>`
             })
@@ -109,9 +118,11 @@ function editListInput(key) {
 
             buttonAddElement.classList.remove('hidden')
 
-            setTimeout(function () {
-                inputElement.value = ''
-            }, 1);
+            spanElementAll.classList.remove('red')
+
+            inputElement.value = ''
+
         }
     }
 }
+
