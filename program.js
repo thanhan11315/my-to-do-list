@@ -3,7 +3,6 @@ var buttonEditElement = document.querySelector('.edit')
 var inputElement = document.querySelector('.input')
 var ulElement = document.querySelector('.my-list')
 var deleteButtonElement = document.querySelector('.delete-button')
-
 function refreshPage() {
     var getlocalStorage = localStorage.getItem('keyListArray')
     if (getlocalStorage == null) {
@@ -22,8 +21,10 @@ refreshPage()
 buttonAddElement.addEventListener('click', makelistArray)
 inputElement.addEventListener('keyup', enterkey)
 function enterkey(e) {
-    if (e.which == 13) {
+    if (e.which == 13 && buttonEditElement.classList.contains('hidden') == true) {
         makelistArray()
+    }if(e.which == 13 && buttonEditElement.classList.contains('hidden') == false){
+        buttonEditElement.click()
     }
 }
 function makelistArray() {
